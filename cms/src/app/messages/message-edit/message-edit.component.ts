@@ -11,7 +11,7 @@ export class MessageEditComponent {
   @ViewChild('subject') subjectInputRef: ElementRef;
   @ViewChild('msgText') msgTextInputRef: ElementRef;
   @Output() addMessageEvent = new EventEmitter<Message>();
-  currentSender = "Sheyla"
+  currentSender = "Steve Jonhson"
 
   onSendMessage(){
     const msgSubject = this.subjectInputRef.nativeElement.value;
