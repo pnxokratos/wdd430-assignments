@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {Contact} from '../contact.model';
 import { ContactService } from '../contact.service';
 @Component({
@@ -12,7 +13,8 @@ export class ContactListComponent implements OnInit{
     // new Contact( '1', 'R. Kent Jackson', 'jacksonk@byui.edu', '208-496-3771', '../../assets/images/jacksonk.jpg', null ),
     // new Contact( '2', 'Rex Barzee', 'barzeer@byui.edu', '208-496-3768', '../../assets/images/barzeer.jpg', null )
   ];
-  selectedContact: Contact;
+  selectedContact: Contact [];
+  subscription: Subscription;
 
 
   constructor(private contactService: ContactService) {}
@@ -22,7 +24,7 @@ export class ContactListComponent implements OnInit{
 
     this.contactService.contactChangedEvent
     .subscribe(
-      (contact: Contact) => {
+      (contact: Contact[]) => {
         this.selectedContact = contact;
       }
     );
