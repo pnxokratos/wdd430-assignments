@@ -3,6 +3,7 @@ import {Subscription } from 'rxjs';
 
 import {Document} from '../document.model'
 import { DocumentService } from '../document.service';
+
 @Component({
   selector: 'cms-document-list',
   templateUrl: './document-list.component.html',
@@ -10,7 +11,7 @@ import { DocumentService } from '../document.service';
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
   // @Output() selectedDocumentEvent = new EventEmitter<Document>();
-  documents:Document[]; 
+  documents:Document[]=[]; 
   // = [
     // new Document('1', 'doc1', 'This is document #1', 'url#1', 'child1'),
     // new Document('2', 'doc2', 'This is document #2', 'url#2', 'child2'),
@@ -24,16 +25,16 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   selectedDocument: Document;
 
   constructor(private documentService: DocumentService) {}
-  ngOnInit() {
-    this.documents = this.documentService.getDocuments();
 
-//---?????????????? not sure if I wrote this correctly :
+  ngOnInit() {
+    //this.documents = this.documentService.getDocuments();
     this.subscription = this.documentService.documentListChangedEvent
     .subscribe(
-      (documentList: Document[]) => {
-        this.documents= this.documents;
+      (documents: Document[]) => {
+        this.documents= documents;
       }
     );
+    this.documentService.getDocuments();
 
     // this.documentService.documentChangedEvent
     // .subscribe(
